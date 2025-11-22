@@ -24,18 +24,20 @@
   .btn-custom i {
     font-size: 1.1rem;
   }
+
+ 
 </style>
-  @extends('layouts.admin')
-  @section('title', 'Semua Kegiatan')
-  @section('content')
-  <div class="content-wrapper px-1 py-3">
+ @extends('layouts.admin')
+ @section('title', 'Semua Kegiatan')
+ @section('content')
+   <div class="content-wrapper px-1 py-3">
     <h1 class="mb-2" style="font-size: 1.8rem; color: #88304E;">
         Selamat datang, {{ Auth::user()->name ?? 'Admin' }} 👋
     </h1>
     <p style="font-size: 1rem; color: #555;">
         Ada kegiatan baru apa yang ingin ditambahkan?
     </p>
-    <button type="button" class="btn btn-custom d-flex align-items-center gap-2">
+    <button type="button" class="btn btn-custom d-flex align-items-center gap-2" onclick="window.location.href='{{ route('admin.TambahKegiatan') }}'">
         <i class="bi bi-plus-circle"></i>Tambah Kegiatan
     </button>
   </div>

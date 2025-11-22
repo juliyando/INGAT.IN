@@ -17,7 +17,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Dashboard (hanya bisa diakses setelah login)
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard')->middleware('auth');
+})->name('dashboard');
 
 // Halaman Admin Dashboard (hanya bisa diakses setelah login)
 Route::get('/admin/dashboard', function () {
@@ -38,3 +38,7 @@ Route::get('/admin/DetailKegiatan', function () {
 Route::get('/admin/ArsipKegiatan', function () {
     return view('admin.ArsipKegiatanAdmin');
 })->name('admin.ArsipKegiatan');
+
+Route::get('/admin/TambahKegiatan', function () {
+    return view('admin.TambahKegiatan');
+})->name('admin.TambahKegiatan');
