@@ -90,13 +90,16 @@
 
     .kegiatan-card {
       background-color: #fff;
-      border-radius: 10px;
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 25px;
+      border-bottom-left-radius: 25px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       height: 250px;
       display: flex;
-      flex-direction: column; /* biar isi card tersusun vertikal */
-      justify-content: space-between; /* tombol di bawah */
+      flex-direction: column; 
+      justify-content: space-between;
       padding: 10px;
     }
 
@@ -145,6 +148,25 @@
       padding: 20px 24px; /* Jarak lembut biar tidak mepet total */
     }
 
+    .detail-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        padding: 20px;
+    }
+
+    .detail-card {
+        width: 95%; /* Hampir memenuhi layar */
+        max-width: 1400px;
+        background: #ffffff;
+        padding: 40px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
     @media (min-width: 768px) {
       .content-wrapper {
         padding: 32px 40px;
