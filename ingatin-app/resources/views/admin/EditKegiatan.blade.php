@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ingat.in - Tambah Kegiatan</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
-
     <style>
         body {
             background-color: #FFF1F1;
@@ -69,25 +67,25 @@
             color: #ffffff;
             border: none;
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-}
-.btn-save:hover {
-    background-color: #6d223d; /* warna hover */
-    color: #000000; /* teks sedikit lebih gelap */
-    transform: translateY(-2px);
-}
+        }
+        .btn-save:hover {
+            background-color: #6d223d; /* warna hover */
+            color: #000000; /* teks sedikit lebih gelap */
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
 
     <!-- Header -->
     <div class="header-bar">
-        <a href="{{ route('admin.dashboard') }}" class="back-btn">
+        <a href="{{ route('admin.SemuaKegiatan') }}" class="back-btn">
             <i class="bi bi-arrow-left-circle-fill"></i>
         </a>
 
         <img src="{{ asset('images/Logo-ingatin.png') }}" class="header-logo" alt="Logo Ingat.in">
 
-        <span class="brand-text">Tambah Kegiatan</span>
+        <span class="brand-text">Edit Kegiatan</span>
     </div>
 
     <!-- Card berada di tengah -->
@@ -118,7 +116,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-save w-100 text-white">
-                        Simpan Kegiatan
+                        Simpan Perubahan
                     </button>
 
                 </form>

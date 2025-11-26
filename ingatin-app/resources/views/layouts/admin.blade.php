@@ -131,6 +131,16 @@
       background-color: #a81830;
     }
 
+    .btn-ToArsip {
+      background-color: #00a2ff;
+      color: white; 
+    }
+
+    .btn-ToArsip:hover {
+      background-color: #2987bd;
+    }
+
+
     .btn-dokumentasi {
             background-color: #88304E;
             color: white;
@@ -163,9 +173,24 @@
         padding: 40px;
         border-top-left-radius: 0;
         border-bottom-right-radius: 0;
-        border-top-right-radius: 12px;
-        border-bottom-left-radius: 12px;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 25px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .btn-upload {
+        background-color: #88304E;
+        color: #fff;
+        border: none;
+        padding: 0.45rem 1rem;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-upload:hover {
+        background-color: #6d243d;
     }
     @media (min-width: 768px) {
       .content-wrapper {

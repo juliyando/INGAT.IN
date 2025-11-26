@@ -3,6 +3,10 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
 // Halaman Login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
@@ -42,3 +46,15 @@ Route::get('/admin/ArsipKegiatan', function () {
 Route::get('/admin/TambahKegiatan', function () {
     return view('admin.TambahKegiatan');
 })->name('admin.TambahKegiatan');
+
+Route::get('/admin/EditKegiatan', function () {
+    return view('admin.EditKegiatan');
+})->name('admin.EditKegiatan');
+
+Route::get('/admin/DetailArsip', function () {
+    return view('admin.DetailArsip');
+})->name('admin.DetailArsip');
+
+Route::get('/admin/PengaturanAdmin', function () {
+    return view('admin.PengaturanAdmin');
+})->name('admin.PengaturanAdmin');

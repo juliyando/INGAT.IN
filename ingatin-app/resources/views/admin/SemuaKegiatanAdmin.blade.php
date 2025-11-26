@@ -24,141 +24,58 @@
                             <p class="card-text">Membersihkan area taman RT 05 secara bersama-sama untuk menjaga kebersihan lingkungan.</p>
                         </div>
                         <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <button onclick="event.stopPropagation(); window.location.href='{{ route('admin.EditKegiatan') }}';" class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <div>
+                            <h5 class="card-title">Gotong Royong Mingguan</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 5 November 2025</h6>
+                            <p class="card-text">Membersihkan area taman RT 05 secara bersama-sama untuk menjaga kebersihan lingkungan.</p>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
+                            <button onclick="event.stopPropagation(); window.location.href='{{ route('admin.EditKegiatan') }}';" class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <div>
+                            <h5 class="card-title">Gotong Royong Mingguan</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 5 November 2025</h6>
+                            <p class="card-text">Membersihkan area taman RT 05 secara bersama-sama untuk menjaga kebersihan lingkungan.</p>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
+                            <button onclick="event.stopPropagation(); window.location.href='{{ route('admin.EditKegiatan') }}';" class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <div>
+                            <h5 class="card-title">Gotong Royong Mingguan</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 5 November 2025</h6>
+                            <p class="card-text">Membersihkan area taman RT 05 secara bersama-sama untuk menjaga kebersihan lingkungan.</p>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
+                            <button onclick="event.stopPropagation(); window.location.href='{{ route('admin.EditKegiatan') }}';" class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
                             <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">Rapat Warga Bulanan</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 12 November 2025</h6>
-                            <p class="card-text">Pembahasan mengenai perencanaan kegiatan akhir tahun dan pembagian jadwal ronda malam.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">Senam Pagi Bersama</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">latihan ngoding</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">latihan ngoding</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">latihan ngoding</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">latihan ngoding</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">latihan ngoding</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card kegiatan-card" onclick="window.location.href='{{ route('admin.DetailKegiatan') }}'">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h5 class="card-title">latihan ngoding</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Tanggal: 19 November 2025</h6>
-                            <p class="card-text">Kegiatan senam rutin di lapangan RT untuk menjaga kebugaran dan mempererat kebersamaan warga.</p>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2 mt-3" onclick="event.stopPropagation()">
-                            <button class="btn btn-edit btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>
-                            <button class="btn btn-hapus btn-sm"><i class="bi bi-trash"></i> Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
     @endsection
