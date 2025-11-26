@@ -18,9 +18,16 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nama_lengkap',
         'email',
         'password',
+        'nik',
+        'nomor_telepon',
+        'alamat',
+        'usia',
+        'jenis_kelamin',
+        'pekerjaan',
+        'role',
     ];
 
     /**
@@ -44,5 +51,24 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isPengurus(): bool
+    {
+        // Langsung cek apakah role adalah 'pengurus'
+        return $this->role === 'pengurus';
+    }
+
+    public function isWarga(): bool
+    {
+        // Cek kebalikannya
+        return $this->role === 'warga';
+        // ATAU return !$this->isPengurus();
+    }
+
+    public function registrations()
+    {
+        // User memiliki banyak pendaftaran kegiatan
+        return $this->hasMany(ScheduleRegistration::class);
     }
 }
