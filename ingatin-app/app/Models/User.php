@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -27,6 +28,7 @@ class User extends Authenticatable
         'usia',
         'jenis_kelamin',
         'pekerjaan',
+        'profile_photo_path',
         'role',
     ];
 
@@ -70,5 +72,13 @@ class User extends Authenticatable
     {
         // User memiliki banyak pendaftaran kegiatan
         return $this->hasMany(ScheduleRegistration::class);
+    }
+
+    public function getProfilePhotoUrlAttribute(): string
+    {
+        // Menggunakan path yang sudah disimpan (atau default jika null)
+        return $this->profile_photo_path
+            ? Storage::url($this->profile_photo_path)
+            : asset('images/profile-default.png');
     }
 }

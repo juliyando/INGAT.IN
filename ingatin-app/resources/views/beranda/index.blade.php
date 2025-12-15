@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Beranda')
 @section('content')
     <style>
         .hero-section {
@@ -36,11 +37,11 @@
             text-align: center;
             z-index: 2;
         ">
-            <h1 class="display-3 fw-bolder mb-3"
+            <h1 class="display-3 fw-semibold mb-3 text-outline-info"
                 style="
                 font-family: 'Poppins', sans-serif; 
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-                color: #C1203A;
+                color: #952638;
             ">
                 INGAT.IN!
             </h1>
@@ -58,20 +59,19 @@
             </p>
 
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="#daftar-kegiatan" class="btn btn-lg px-4 me-sm-3"
+                <a href="{{route('warga.calendar')}}" class="btn btn-lg px-4 me-sm-3"
                     style="
-                    /* Tailwind: bg-green-600 hover:bg-green-700, Custom Style */
-                    background-color: #88304E; /* Bootstrap 'success' color */
+                    background-color: #952638;
                     border-color: #090a0a;
                     color: white;
-                    font-weight: bold;
+                    font-weight: 600;
                     transition: all 0.3s;
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
                 ">
-                    LIHAT KALENDER KEGIATAN <i class="bi bi-arrow-right"></i>
+                    LIHAT KALENDER KEGIATAN
                 </a>
 
-                <a href="#about-us" class="btn btn-outline-light btn-lg px-4"
+                <a href="{{route('about')}}" class="btn btn-outline-light btn-lg px-4"
                     style="
                     /* Tailwind: border-white hover:bg-white/10 */
                     border-width: 2px;
@@ -86,11 +86,11 @@
 
     </section>
 
-    <section style="background-color: #FFF1F1;">
+    <section style="background-color: #ffffff;">
         <div class="container py-md-5">
 
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3" style="color: #343A40; font-family: 'Poppins', sans-serif;">
+                <h2 class="display-5 fw-semibold mb-3" style="color: #952638; font-family: 'Poppins', sans-serif;">
                     FITUR INGAT.IN
                 </h2>
             </div>
@@ -100,26 +100,26 @@
                 <div class="col">
                     <div class="card h-100 shadow-lg border-0 transition-hover" style="border-radius: 1rem;">
                         <div class="card-body p-4 text-center">
-                            <i class="bi bi-calendar2-check-fill mb-3" style="font-size: 3rem; color: #198754;"></i>
-                            <h4 class="card-title fw-bold" style="color: #343A40;">Kalender Real-Time</h4>
+                            <i class="bi bi-calendar2-check-fill mb-3" style="font-size: 3rem; color: #952638;"></i>
+                            <h4 class="card-title fw-semibold" style="color: #343A40;">Kalender Real-Time</h4>
                             <p class="card-text text-muted">
                                 Jangan pernah ketinggalan informasi. Pantau jadwal kegiatan terkini dengan pembaruan instan.
                             </p>
-                            <a href="#kalender" class="btn btn-outline-danger mt-3 fw-bold">
+                            {{-- <a href="#kalender" class="btn btn-outline-danger mt-3 fw-semibold">
                                 <i class="bi bi-eye me-2"></i> Lihat Kalender
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100 shadow-lg border-0 transition-hover" style="border-radius: 1rem;">
                         <div class="card-body p-4 text-center">
-                            <i class="bi bi-calendar2-check-fill mb-3" style="font-size: 3rem; color: #198754;"></i>
-                            <h4 class="card-title fw-bold" style="color: #343A40;">Registrasi Online Sekarang</h4>
+                            <i class="bi bi-person-workspace mb-3" style="font-size: 3rem; color: #952638;"></i>
+                            <h4 class="card-title fw-semibold" style="color: #343A40;">Registrasi Online Sekarang</h4>
                             <p class="card-text text-muted">
                                 Daftar acara dan kerja bakti semudah beberapa klik. Kelola kehadiran secara digital.
                             </p>
-                            <a href="#registrasi" class="btn btn-outline-danger mt-3 fw-bold">
+                            <a href="{{route('daftar')}}" class="btn mt-3 fw-semibold text-white" style="background-color: #952638">
                                 <i class="bi bi-pencil-square me-2"></i> Daftar Sekarang
                             </a>
                         </div>
@@ -129,14 +129,14 @@
                 <div class="col">
                     <div class="card h-100 shadow-lg border-0 transition-hover" style="border-radius: 1rem;">
                         <div class="card-body p-4 text-center">
-                            <i class="bi bi-archive-fill mb-3" style="font-size: 3rem; color: #6C757D;"></i>
-                            <h4 class="card-title fw-bold" style="color: #343A40;">Arsip Kegiatan</h4>
+                            <i class="bi bi-archive-fill mb-3" style="font-size: 3rem; color: #952638;"></i>
+                            <h4 class="card-title fw-semibold" style="color: #343A40;">Arsip Kegiatan</h4>
                             <p class="card-text text-muted">
                                 Telusuri kembali memori kegiatan yang telah terlaksana. Dokumentasi terstruktur dan rapi.
                             </p>
-                            <a href="#arsip" class="btn btn-outline-danger mt-3 fw-bold">
+                            {{-- <a href="#arsip" class="btn btn-outline-danger mt-3 fw-bold">
                                 <i class="bi bi-folder-fill me-2"></i> Kunjungi Arsip
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>

@@ -50,7 +50,7 @@ class LoginController extends Controller
         }
 
         // 4. Gagal
-        return back()->withErrors(['login_field' => 'Kombinasi kredensial tidak ditemukan.']);
+        return back()->withErrors(['login_field' => 'Terdapat Kesalahan.']);
     }
 
     public function logout(Request $request)
@@ -71,10 +71,9 @@ class LoginController extends Controller
             return 'email'; 
         } 
         
-        // Prioritas 2: NIK (Cek panjang dan numerik)
-        if (is_numeric($loginField) && strlen($loginField) === 16) {
-            return 'nik'; 
-        }
+        // if (is_numeric($loginField) && strlen($loginField) === 16) {
+        //     return 'nik'; 
+        // }
         
         // Prioritas 3: Default ke Nomor Telepon
         return 'nomor_telepon'; 

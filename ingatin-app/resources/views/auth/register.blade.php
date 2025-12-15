@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrasi - INGAT.IN</title>
+    <title>Registrasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="icon" href="{{ asset('images/logo-ingatin.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/logo-ingatin.png') }}" type="image/x-icon">
+
     <style>
         body {
-            background-image: url("https://www.pekanbaru.go.id/berkas_file/news/06012025/36974-news-pemko-pekanbaru-gela.jpg");
+            background-image: url("{{ asset('images/background-image.jpg') }}");
             background-color: rgba(0, 0, 0, 0.5);
             background-blend-mode: darken;
             background-size: cover;
@@ -93,14 +97,14 @@
         }
 
         .text-center a {
-            color: #C1203A;
+            color: #ff0c34;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         .text-center a:hover {
-            text-decoration: underline;
+            text-decoration: none;
             color: #a81830;
         }
 
@@ -117,6 +121,36 @@
             color: #dc3545;
             font-size: 0.85rem;
         }
+
+        .input-group .form-control {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            border-right: 0;
+            /* Hilangkan garis batas kanan */
+        }
+
+        .input-group .btn-toggle-password {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-left: 0;
+            /* Hilangkan garis batas kiri */
+            background-color: white;
+            /* Samakan warna background dengan input */
+            border-color: #495057;
+            /* Samakan warna border dengan input */
+            color: #333;
+            z-index: 5;
+        }
+
+        .input-group .btn-toggle-password:hover {
+            background-color: #f8f9fa;
+            border-color: #495057;
+        }
+
+        /* Fix agar garis border tetap terlihat rapi saat diklik */
+        .input-group .form-control:focus {
+            z-index: 3;
+        }
     </style>
 </head>
 
@@ -125,6 +159,20 @@
         <div class="card-body">
             <img src="{{ asset('images/logo-ingatin.png') }}" alt="Logo INGAT.IN" class="logo">
             <h4 class="text-center text-danger">Daftarkan Akunmu!</h4>
+
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0 ps-3">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -174,22 +222,35 @@
                 {{-- 5. KATA SANDI --}}
                 <div class="mb-3">
                     <label for="password" class="form-label">Kata Sandi</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                        name="password" placeholder="Masukkan Kata Sandi (minimal 8 karakter)" required>
-                    @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <div class="input-group has-validation">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            id="password" name="password" placeholder="Masukkan Kata Sandi (minimal 8 karakter)"
+                            required>
+                        <button class="btn btn-toggle-password btn-light border toggle-password" type="button"
+                            data-target="password">
+                            <i class="bi bi-eye-slash-fill"></i>
+                        </button>
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
-                {{-- 6. KONFIRMASI KATA SANDI --}}
+                {{-- 6. KONFIRMASI KATA SANDI (DENGAN MATA) --}}
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
-                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
-                        id="password_confirmation" name="password_confirmation"
-                        placeholder="Masukkan Kembali Kata Sandi" required>
-                    @error('password_confirmation')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <div class="input-group has-validation">
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                            id="password_confirmation" name="password_confirmation"
+                            placeholder="Masukkan Kembali Kata Sandi" required>
+                        <button class="btn btn-toggle-password btn-light border toggle-password" type="button"
+                            data-target="password_confirmation">
+                            <i class="bi bi-eye-slash-fill"></i>
+                        </button>
+                        @error('password_confirmation')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="form-check mb-3">
@@ -202,7 +263,7 @@
                 <button type="submit" class="btn btn-primary">Daftar</button>
 
                 <div class="text-center mt-3">
-                    <p>Sudah punya akun? <a href="{{ route('login') }}">Login</a></p>
+                    <p class="text-white">Sudah punya akun? <a href="{{ route('login') }}">Login</a></p>
                 </div>
 
             </form>
@@ -211,6 +272,25 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+    <script>
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('bi-eye-slash-fill');
+                    icon.classList.add('bi-eye-fill');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('bi-eye-fill');
+                    icon.classList.add('bi-eye-slash-fill');
+                }
+            });
+        });
     </script>
 </body>
 

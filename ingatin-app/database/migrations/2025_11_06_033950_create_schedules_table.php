@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->date('start');
-            $table->date('end');
+            $table->datetime('start');
+            $table->datetime('end');
             $table->string('lokasi');
             $table->string('image_flyer_path')->nullable();
             $table->enum('status', ['upcoming', 'ongoing', 'finished'])->default('upcoming');

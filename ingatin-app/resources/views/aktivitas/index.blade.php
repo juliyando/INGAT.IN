@@ -1,33 +1,103 @@
 @extends('layouts.app')
-
+@section('title', 'Daftar Kegiatan')
 @section('content')
+    {{-- Injeksi CSS Khusus Halaman ini (untuk ketebalan dan konsistensi) --}}
+    @push('styles')
+        <style>
+            /* 1. KETERANGAN UTAMA CARD */
+            .card-kegiatan {
+                border-radius: 12px !important;
+                border-color: #952638;
+                background-color: #ffffff !important;
+                /* Warna Latar Card (Gelap) */
+                color: white;
+                transition: transform 0.2s ease;
+            }
+
+            .card-kegiatan:hover {
+                transform: translateY(-3px);
+                /* Efek Hover Tipis (UX) */
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4) !important;
+            }
+
+            /* 2. AREA FOOTER CARD */
+            .card-footer-kegiatan {
+                background-color: #888888 !important;
+                /* Warna Footer (Lebih Gelap dari Body Card) */
+                border-top: 1px solid rgba(255, 255, 255, 0.066) !important;
+            }
+
+            /* 3. JUDUL DAN ICON */
+            .card-title-kegiatan {
+                color: #952638 !important;
+                /* Aksen Kuning (Warna Tegas) */
+                font-weight: 600 !important;
+                /* Bold */
+                font-size: 1.2rem;
+            }
+
+            .card-kegiatan .list-unstyled i {
+                color: #952638 !important;
+                /* Icon menggunakan Merah (Aksen) */
+                /* font-weight: 500; */
+            }
+
+            /* Teks Status (Disesuaikan agar lebih menonjol) */
+            .text-warning-status {
+                color: #31312f !important;
+            }
+
+            /* Belum Terdaftar */
+            .text-success-status {
+                color: #8bff89 !important;
+            }
+
+            /* Terdaftar (Hijau Konsisten) */
+            .text-secondary-status {
+                color: #e12b3d !important;
+            }
+
+            /* Selesai/Sedang Berlangsung */
+            .text-info-status {
+                color: #0dcaf0 !important;
+            }
+        </style>
+    @endpush
+
     <div class="container py-5">
 
-        {{-- Area Filter dan Judul --}}
-        <div class="row mb-4">
-            <div class="col-md-9">
-                <h2 class="display-5 fw-bold" style="color: #DC3545;">Daftar Kegiatan Komunitas</h2>
-                <p class="lead text-muted">Ayo daftar dan aktifkan kontribusimu di komunitas RT.19!</p>
+        <div class="row mb-1 mt-3">
+            <div class="col-md-9 mt-5">
+                <h2 class="display-7 fw-semibold" style="color: #952638;">Daftar Kegiatan Komunitas</h2>
+                <p class="lead" style="font-size: 90%">Ayo daftar dan aktifkan kontribusimu di komunitas RT.19!</p>
             </div>
-            <div class="col-md-3 d-flex align-items-center justify-content-end">
-                {{-- Placeholder untuk Filter --}}
-                <a href="#" class="btn btn-sm btn-outline-secondary">Filter Tanggal</a>
+            {{-- <div class="col-md-3 d-flex align-items-center justify-content-end">
+                <a href="#" class="btn btn-sm btn-outline-secondary fw-bold">Filter Tanggal</a>
+            </div> --}}
+        </div>
+
+        <div class="card mb-4 border-danger border-3 shadow-sm">
+            <div class="card-body">
+                <form action="{{ route('daftar') }}" method="GET" class="d-flex">
+                    <input type="text" name="search" class="form-control me-2"
+                        placeholder="Cari Judul, Lokasi, atau Status..." value="{{ $search ?? '' }}">
+                    <button type="submit" class="btn text-white fw-bold" style="background-color: #952638;"><i
+                            class="bi bi-search"></i></button>
+                    @if ($search)
+                        <a href="{{ route('kelola.kegiatan') }}" class="btn btn-outline-secondary ms-2">Reset</a>
+                    @endif
+                </form>
             </div>
         </div>
 
-        {{-- Tampilan Pesan Flash (Sukses/Error dari Controller) --}}
+        {{-- Tampilan Pesan Flash --}}
         @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('success') }}<button
+                    type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
         @endif
-
         @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session('error') }}<button
+                    type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
         @endif
 
         {{-- Menggunakan row-cols-md-3 untuk 3 card per baris --}}
@@ -36,109 +106,118 @@
                 @php
                     // --- 1. Ambil Status ---
                     $activityStatus = $activity->status;
-                    $isRegistered = $activity->registrations->isNotEmpty(); // TRUE jika sudah ada entri pendaftaran
+                    $isRegistered = $activity->registrations->isNotEmpty();
 
                     // --- 2. Inisialisasi Tampilan ---
                     $buttonText = '';
                     $buttonClass = '';
-                    $buttonDisabled = false;
                     $statusText = '';
-                    $statusTextColor = 'text-warning';
+                    $statusTextColor = '';
 
                     // --- 3. Logika Penentuan Status & Tombol ---
                     if ($activityStatus == 'finished') {
                         $statusText = 'Selesai';
-                        $statusTextColor = 'text-secondary';
-                        $buttonText = 'LIHAT DOKUMENTASI';
+                        $statusTextColor = 'text-secondary-status';
+                        $buttonText = 'Lihat Dokumentasi';
                         $buttonClass = 'btn-secondary';
-                        $buttonDisabled = true;
                     } elseif ($activityStatus == 'ongoing') {
                         $statusText = 'Sedang Berlangsung';
-                        $statusTextColor = 'text-info';
-                        $buttonText = 'TIDAK DAPAT DAFTAR';
+                        $statusTextColor = 'text-info-status';
+                        $buttonText = 'Tidak Bisa Mendaftar';
                         $buttonClass = 'btn-secondary';
-                        $buttonDisabled = true;
                     } elseif ($isRegistered) {
-                        // Status: upcoming/ongoing, dan sudah terdaftar
                         $statusText = 'Terdaftar';
-                        $statusTextColor = 'text-success';
-                        $buttonText = 'BATALKAN';
+                        $statusTextColor = 'text-success-status';
+                        $buttonText = 'Batalkan';
                         $buttonClass = 'btn-warning';
                     } else {
-                        // Status: upcoming, dan belum terdaftar
                         $statusText = 'Belum Terdaftar';
-                        $statusTextColor = 'text-warning';
-                        $buttonText = 'DAFTAR';
+                        $statusTextColor = 'text-warning-status';
+                        $buttonText = 'Daftar';
                         $buttonClass = 'btn-danger';
                     }
                 @endphp
 
                 <div class="col">
-                    <div class="card h-100 border-0 shadow-lg overflow-hidden"
-                        style="border-radius: 12px; background-color: #343A40; color: white;">
-
-                        {{-- HEADER IMAGE / FLYER --}}
-                        <div class="position-relative" style="height: 150px; background-color: #DC3545;">
-                            {{-- Ganti dengan path image flyer Anda --}}
-                            <img src="{{ asset('storage/' . ($activity->image_flyer_path ?? 'images/default-flyer.png')) }}"
-                                alt="Flyer Kegiatan" class="w-100 h-100 object-fit-cover" style="opacity: 0.8;">
-                        </div>
-
+                    <div class="card card-kegiatan h-100 border-4 shadow-lg overflow-hidden">
                         <div class="card-body p-4 flex-grow-1 position-relative">
-                            <h5 class="fw-bold mb-3" style="color: #FFC107;">{{ $activity->title }}</h5>
+                            <h5 class="card-title card-title-kegiatan mb-3">{{ $activity->title }}</h5>
 
-                            <ul class="list-unstyled mb-3 small text-muted">
-                                <li><i class="bi bi-geo-alt-fill me-2" style="color: #DC3545;"></i> Lokasi:
-                                    **{{ $activity->lokasi }}**</li>
-                                <li><i class="bi bi-calendar-check-fill me-2" style="color: #DC3545;"></i> Tanggal:
-                                    **{{ $activity->start }}**</li>
-                                <li><i class="bi bi-clock-fill me-2" style="color: #DC3545;"></i> Status Kegiatan:
-                                    **{{ strtoupper($activityStatus) }}**</li>
+                            <ul class="list-unstyled fw-semibold mb-3 small text-black">
+                                <li><i class="bi bi-geo-alt-fill me-2"></i> Lokasi: {{ $activity->lokasi }}</li>
+                                <li class="d-flex align-items-start mt-1">
+                                    <i class="bi bi-calendar-check-fill me-2 mt-1"></i>
+                                    <div>
+                                        {{-- Waktu Mulai --}}
+                                        <div>
+                                            {{ $activity->start->translatedFormat('d M Y') }}
+                                            <small class="text-muted">({{ $activity->start->format('H:i') }} WIB)</small>
+                                        </div>
+
+                                        {{-- Waktu Selesai (Cek jika ada) --}}
+                                        @if ($activity->end)
+                                            <div class="text-muted" style="font-size: 0.9em;">
+                                                s/d
+                                                {{ $activity->end->translatedFormat('d M Y') }}
+                                                <small>({{ $activity->end->format('H:i') }} WIB)</small>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </li>
+                                <li class="mt-2">
+                                    <span
+                                        class="badge fw-semibold rounded-pill 
+                                    @if ($activityStatus == 'Selesai') bg-danger 
+                                    @elseif($activityStatus == 'Berlangsung') bg-success 
+                                    @else bg-info @endif">
+                                        {{ strtoupper($activityStatus) }}
+                                    </span>
+                                </li>
                             </ul>
                         </div>
 
                         {{-- FOOTER CARD: Tombol Aksi --}}
-                        <div class="card-footer border-0 p-3 d-flex justify-content-between align-items-center"
-                            style="background-color: #2b3035;">
+                        <div class="card-footer card-footer-kegiatan p-3 d-flex justify-content-between align-items-center">
 
-                            <span class="small fw-bold {{ $statusTextColor }}">
-                                Status Anda: {{ $statusText }}
+                            <span class="small fw-semibold status-warga {{ $statusTextColor }}">
+                                {{ $statusText }}
                             </span>
 
-                            {{-- Tombol LIHAT SELENGKAPNYA / BATALKAN --}}
-                            @if ($isRegistered)
-                                {{-- 1. Tombol BATALKAN (Muncul di List Card) --}}
+                            {{-- Tombol DAFTAR / BATALKAN --}}
+                            @if ($activityStatus == 'Selesai' || $activityStatus == 'Berlangsung')
+                                <a href="{{ route('activity.show', $activity->id) }}"
+                                    class="btn btn-sm btn-info fw-semibold">
+                                    Dokumentasi Kegiatan
+                                </a>
+                            @elseif ($isRegistered)
                                 <form action="{{ route('schedules.register.destroy', $activity->id) }}" method="POST"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin membatalkan pendaftaran ini?');">
+                                    onsubmit="return confirm('Yakin batalkan pendaftaran?');"
+                                    class="d-flex align-items-center">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm fw-bold {{ $buttonClass }}"
+                                    <a href="{{ route('activity.show', $activity->id) }}"
+                                        class="btn btn-sm btn-info fw-semibold me-2">
+                                        Detail Kegiatan
+                                    </a>
+                                    {{-- <button type="submit" class="btn btn-sm fw-semibold {{ $buttonClass }}"
                                         style="color: white;">
                                         {{ $buttonText }}
-                                    </button>
-                                </form>
-                            @elseif ($activityStatus == 'upcoming')
-                                {{-- 2. Tombol DAFTAR (Muncul di List Card) --}}
-                                <form action="{{ route('schedules.register.store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="activity_id" value="{{ $activity->id }}">
-                                    <button type="submit" class="btn btn-sm fw-bold {{ $buttonClass }}"
-                                        style="color: white;">
-                                        {{ $buttonText }}
-                                    </button>
+                                    </button> --}}
                                 </form>
                             @else
-                                {{-- 3. Tombol DISABLED (Finished/Ongoing) --}}
-                                <button type="button" class="btn btn-sm fw-bold {{ $buttonClass }} disabled"
-                                    style="color: white;" disabled>
-                                    {{ $buttonText }}
-                                </button>
+                                <form action="{{ route('schedules.register.store') }}" method="POST"
+                                    class="d-flex align-items-center">
+                                    @csrf
+                                    <input type="hidden" name="activity_id" value="{{ $activity->id }}">
+                                    <a href="{{ route('activity.show', $activity->id) }}"
+                                        class="btn btn-sm btn-info fw-semibold me-2">
+                                        Detail Kegiatan
+                                    </a>
+                                    {{-- <button type="submit" class="btn btn-sm fw-semibold {{ $buttonClass }}"
+                                        style="color: white;">
+                                        {{ $buttonText }}
+                                    </button> --}}
+                                </form>
                             @endif
-
-                            {{-- Tombol Lihat Detail (Di sebelah tombol aksi jika ada) --}}
-                            <a href="{{ route('activity.show', $activity->id) }}"
-                                class="btn btn-sm btn-outline-info fw-bold ms-2">
-                                <i class="bi bi-eye"></i> Detail
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -146,8 +225,16 @@
         </div>
 
         {{-- Paginasi --}}
-        <div class="mt-4 d-flex justify-content-center">
-            {{ $activities->links() }}
+        <div class="mt-3 d-flex justify-content-between align-items-center">
+            <div>
+                {{-- Informasi pagination opsional --}}
+                Menampilkan {{ $activities->firstItem() }} sampai {{ $activities->lastItem() }} dari
+                {{ $activities->total() }}
+                Total Pendaftar
+            </div>
+            <div>
+                {{ $activities->links() }}
+            </div>
         </div>
 
     </div>

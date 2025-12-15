@@ -9,6 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="icon" href="{{ asset('images/logo-ingatin.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/logo-ingatin.png') }}" type="image/x-icon">
+    @stack('styles')
 
     <style>
         body {
@@ -39,6 +45,7 @@
             border-radius: 50px;
             text-decoration: none;
             transition: 0.3s background-color;
+            font-weight: 600;
         }
 
         .login-button:hover {
@@ -66,7 +73,7 @@
         .nav-link.active {
             color: #000;
         }
-
+        
         @media (min-width: 991px) {
             .nav-link::before {
                 content: "";
@@ -76,7 +83,7 @@
                 transform: translateX(-50%);
                 width: 0%;
                 height: 2px;
-                background-color: #C1203A;
+                background-color: #88304E;
                 visibility: hidden;
                 transition: 0.3s ease-in-out;
             }

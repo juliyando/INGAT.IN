@@ -12,7 +12,8 @@
 
     <!-- Google Font: Raleway SemiBold -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
-
+    <link rel="icon" href="{{ asset('images/logo-ingatin.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/logo-ingatin.png') }}" type="image/x-icon">
     <style>
         /* CSS WAJIB DITAMBAHKAN ke layouts/app.blade.php atau file CSS eksternal */
         .app-wrapper {
